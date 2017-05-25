@@ -139,6 +139,6 @@ def generate(html_files, novelname, author, chaptername, chapter_s, chapter_e):
 	
 	epub.writestr("OEBPS/toc.ncx", toc_start % {"novelname": novelname, "toc_end": toc_end})
 	
-  #removes all the temporary files
+  	#removes all the temporary files
 	for x in html_files:
 		os.remove(x)
