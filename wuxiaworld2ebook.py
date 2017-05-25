@@ -4,17 +4,17 @@ import getify
 print (links.index())
 
 # Gets the choise of novels and chapters
-novel = input("Which Novel do you want to read?")
+novel = input("Which Novel do you want to read? (Enter a number): ")
 novel = int(novel)
 book = 0
 if novel == 11 or novel == 18 or novel == 25 or novel == 40:
 	book = input("Which Book do you want to read?")
 raw_info = links.info(novel, book)
-s_chapter = input("What chapter do you want to start at?")
+s_chapter = input("What chapter do you want to start at?: ")
 f_chapter = s_chapter
 s_chapter = int(s_chapter)
 x_chapter = s_chapter
-e_chapter = input("Till what chapter do you want to read?")
+e_chapter = input("Till what chapter do you want to read?: )
 end_chapter = e_chapter
 e_chapter = int(e_chapter)
 
