@@ -38,16 +38,11 @@ Now it should download the chapters you wanted and will save them into an .epub 
 
 ## Keep in mind!
 
-The table of contents generation doesn't work properly at the moment.
-If you want to have a woking table of contents you will need to have calibre installed.
-You need to add the file to calibre, then right click on the book and select "edit book" in the drop down menu.
-Afterwards you should see a somewhat blue icon in the top taskbar where you can edit the table of contents.
-There just select "Generate Table of Contends out of file names".
-Then close the window and click save. Afterwards you should have a working table of contend.
+This script is buggy since I the core of the code was never build for a public release. Although the code works as far as I know there a a lot of small bugs that I have yet to fix. If you come across some of them feel free to let me know so I have a general idea what is still necesarry to fix.
 
 ### ToDo list
 
-- Fix table of contends
+- Fix table of contents
 - Add missing Novels
 
 ## License
@@ -57,3 +52,7 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 ## Acknowledgments
 
 * Hat tip to anyone on stackexchange who helped me in my most dire times
+
+## Donation Button
+
+[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=U7KDYY9UB9PMY)
