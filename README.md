@@ -5,7 +5,7 @@ Also read the Keep in mind part!
 ## Getting Started
 
 To run this script you'll need to have Python 3.6.1 install which you can find [here](https://www.python.org/downloads/ "Python Download Link").
-Or you can just donwload the standalone executable which you can find [here](https://drive.google.com/file/d/0B_b6PybP95z1Vm9samQtX3hGMG8/view?usp=sharing "Google Drive Standalone Link").
+Or you can just donwload the standalone executable which you can find [here](https://drive.google.com/file/d/0B_b6PybP95z1aGdtOGctMEJTWHM/view?usp=sharing "Google Drive Standalone Link").
 
 ### Features
 
