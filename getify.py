@@ -5,6 +5,16 @@ import zipfile
 import time
 import sys
 
+def find_between(file):
+	f = open(file, "r", encoding = "utf8")
+	s = f.read()
+	try:
+		start = s.index("Chapter") + len("Chapter")
+		end = s.index("<", start )
+		return "Chapter" + s[start:end]
+	except ValueError:
+		return ""
+
 """Downloads web page from Wuxiaworld and saves it into the folder where the programm is located"""
 def download(link, file_name):
 	url = urllib.request.Request(
@@ -89,7 +99,7 @@ def generate(html_files, novelname, author, chaptername, chapter_s, chapter_e):
 
 	# The index file is another XML file, living per convention
 	# in OEBPS/Content.xml
-	index_tpl = '''<package version="2.0"
+	index_tpl = '''<package version="3.1"
 	xmlns="http://www.idpf.org/2007/opf">
 		<metadata>
 			%(metadata)s
@@ -97,7 +107,8 @@ def generate(html_files, novelname, author, chaptername, chapter_s, chapter_e):
 		<manifest>
 			%(manifest)s
 		</manifest>
-		<spine toc="ncx">
+		<spine>
+			<itemref idref="toc" linear="no"/>
 			%(spine)s
 		</spine>
 	</package>'''
@@ -108,7 +119,7 @@ def generate(html_files, novelname, author, chaptername, chapter_s, chapter_e):
     <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:ns0="http://www.idpf.org/2007/opf" ns0:role="aut" ns0:file-as="Unbekannt">%(author)s</dc:creator>
 	<meta xmlns:dc="http://purl.org/dc/elements/1.1/" name="calibre:series" content="%(series)s"/>''' % {
 	"novelname": novelname + ": " + chapter_s + "-" + chapter_e, "author": author, "series": novelname}
-	toc_manifest = '<item href="toc.ncx" id="ncx" media-type="application/x-dtbncx+xml"/>'
+	toc_manifest = '<item href="toc.xhtml" id="toc" properties="nav" media-type="application/xhtml+xml"/>'
 	
 	# Write each HTML file to the ebook, collect information for the index
 	for i, html in enumerate(html_files):
@@ -127,18 +138,35 @@ def generate(html_files, novelname, author, chaptername, chapter_s, chapter_e):
 	
 	 #Generates a Table of Contents + lost strings
 	toc_start = '''<?xml version='1.0' encoding='utf-8'?>
-	<ncx xmlns="http://www.daisy.org/z3986/2005/ncx/" version="2005-1" xml:lang="deu">
+	<!DOCTYPE html>
+	<html xmlns="http://www.daisy.org/z3986/2005/xhtml" xmlns:epub="http://www.idpf.org/2007/ops">
 	<head>
+		<title>%(novelname)s</title>
 	</head>
-	<docTitle>
-		text>%(novelname)s</text>
-	</docTitle>
-	<navMap>
-		# %(toc_end)s'''
-	toc_end = '''</navMap></ncx>''' 
+	<body>
+		<section class="frontmatter TableOfContents">
+			<header>
+				<h1>Contents</h1>
+			</header>
+			<nav id="toc" role="doc-toc" epub:type="toc">
+				<ol>
+				%(toc_mid)s
+		%(toc_end)s'''
+	toc_mid = ""
+	toc_end = '''</ol></nav></section></body></html>''' 
+		
+	for i, y in enumerate(html_files):
+		ident = 0
+		chapter = find_between(html_files[i])
+		chapter = str(chapter)
+		toc_mid += '''<li class="toc-Chapter-rw" id="num_%s">
+		<a href="%s">%s</a>
+		</li>''' % (i, html_files[i], chapter)
+		
+	epub.writestr("OEBPS/toc.xhtml", toc_start % {"novelname": novelname, "toc_mid": toc_mid, "toc_end": toc_end})
 	
-	epub.writestr("OEBPS/toc.ncx", toc_start % {"novelname": novelname, "toc_end": toc_end})
-	
+
+			
   	#removes all the temporary files
 	for x in html_files:
 		os.remove(x)
