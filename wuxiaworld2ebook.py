@@ -14,7 +14,7 @@ s_chapter = input("What chapter do you want to start at?: ")
 f_chapter = s_chapter
 s_chapter = int(s_chapter)
 x_chapter = s_chapter
-e_chapter = input("Till what chapter do you want to read?: )
+e_chapter = input("Till what chapter do you want to read?: ")
 end_chapter = e_chapter
 e_chapter = int(e_chapter)
 
