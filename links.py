@@ -54,7 +54,7 @@ def info(novel, book):
 		"NovelName" : "Desolate Era",
 		"author" : "I Eat Tomatoes, RWX"}
 	elif novel == 12:
-		info = {"link" : "http://www.wuxiaworld.com/ragonmakenwar-index/dmw-chapter-",
+		info = {"link" : "http://www.wuxiaworld.com/dragonmakenwar-index/dmw-chapter-",
 		"ChapterName" : "dmw-chapter-",
 		"NovelName" : "Dragon Maken War",
 		"author" : "Kim Jae-Han, NaughtyOtter"}
