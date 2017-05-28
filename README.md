@@ -1,11 +1,10 @@
 # Wuxiaworld-2-eBook
-This Python script will download chapters from novels availaible on wuxiaworld.com saves then into the .epub format.
-Also read the Keep in mind part!
+This Python script will download chapters from novels availaible on wuxiaworld.com and saves them into the .epub format.
 
 ## Getting Started
 
 To run this script you'll need to have Python 3.6.1 install which you can find [here](https://www.python.org/downloads/ "Python Download Link").
-Or you can just donwload the standalone executable which you can find [here](https://drive.google.com/file/d/0B_b6PybP95z1Vmtlcmlyd3h1NEk/view?usp=sharing "Google Drive Standalone Link").
+Or you can just donwload the standalone executable which you can find [here](https://github.com/MrHaCkEr/Wuxiaworld-2-eBook/releases/tag/1.2 "GitHub releases 1.2").
 
 ### Features
 
@@ -38,7 +37,7 @@ Now it should download the chapters you wanted and will save them into an .epub 
 
 ## Keep in mind!
 
-This script is buggy since I the core of the code was never build for a public release. Although the code works as far as I know there a a lot of small bugs that I have yet to fix. If you come across some of them feel free to let me know so I have a general idea what is still necesarry to fix.
+This script could be buggy since the core of the code was never build for a public release. Although the code works as far as I know there a a lot of small bugs that I have yet to fix. If you come across some of them feel free to let me know so I have a general idea what is still necesarry to fix.
 
 ### ToDo list
 
