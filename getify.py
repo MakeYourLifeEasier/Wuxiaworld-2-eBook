@@ -103,7 +103,7 @@ def generate(html_files, novelname, author, chaptername, chapter_s, chapter_e):
 	xmlns="http://www.idpf.org/2007/opf">
 		<metadata>
 			%(metadata)s
-		<metadata/>
+		</metadata>
 		<manifest>
 			%(manifest)s
 		</manifest>
@@ -139,7 +139,7 @@ def generate(html_files, novelname, author, chaptername, chapter_s, chapter_e):
 	 #Generates a Table of Contents + lost strings
 	toc_start = '''<?xml version='1.0' encoding='utf-8'?>
 	<!DOCTYPE html>
-	<html xmlns="http://www.daisy.org/z3986/2005/xhtml" xmlns:epub="http://www.idpf.org/2007/ops">
+	<html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops">
 	<head>
 		<title>%(novelname)s</title>
 	</head>
