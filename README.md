@@ -4,7 +4,7 @@ This Python script will download chapters from novels availaible on wuxiaworld.c
 ## Getting Started
 
 To run this script you'll need to have Python 3.6.1 install which you can find [here](https://www.python.org/downloads/ "Python Download Link").
-Or you can just donwload the standalone executable which you can find [here](https://github.com/MrHaCkEr/Wuxiaworld-2-eBook/releases/tag/1.2 "GitHub releases 1.2").
+Or you can just donwload the standalone executable which you can find [here](https://github.com/MrHaCkEr/Wuxiaworld-2-eBook/releases "GitHub releases 1.2").
 
 ### Features
 
