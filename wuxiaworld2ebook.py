@@ -7,10 +7,7 @@ print (links.index())
 novel = input("Which Novel do you want to read? (Enter a number): ")
 novel = int(novel)
 book = 0
-if novel == 43:
-	novel = input("Which Novel do you want to read? (Enter a number): ")
-if novel == 11 or novel == 18 or novel == 25 or novel == 40 or novel == 45 or novel == 46 or novel == 50:
-	links.IndexComplete()
+if novel == 11 or novel == 18 or novel == 25 or novel == 40 or novel == 44 or novel == 45 or novel == 49:
 	book = input("Which Book do you want to read?")
 raw_info = links.info(novel, book)
 s_chapter = input("What chapter do you want to start at?: ")
