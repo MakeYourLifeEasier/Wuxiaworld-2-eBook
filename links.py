@@ -208,7 +208,11 @@ def info(novel, book):
 		"ChapterName" : "wdqk-chapter-",
 		"NovelName" : "Wu Dong Qian Kun",
 		"author" : "Heavenly Silkworm Potato, Yellow Law"}	
-	
+	elif novel == 44:
+		info = {"link": "http://www.wuxiaworld.com/master-index/7-killers-chapter-",
+			"ChapterName" : "7k-chapter-",
+			"NovelName" : "7 Killers",
+			"author" : "Gu Long, Deathblade"
 	return info
 	
 # Prints the available Novels in a userfriendly format
@@ -255,3 +259,13 @@ def index():
 	print("40. Upgrade Specialist in Another World")
 	print("41. Warlock of the Magus World")
 	print("42. Wu Dong Qian Kun")
+	print("43. Show Complete Novels)
+	
+def IndexComplete():
+	print("44. 7 Killers")
+	print("45. Child of Light")
+	print("46. Coiling Dragon")
+	print("47. Dragon King with Seven Stars")
+	print("48. Heros Shead no Trears")
+	print("49. Horizon, Bright Moon, Sabre")
+	print("50. Stellar Transformations")
