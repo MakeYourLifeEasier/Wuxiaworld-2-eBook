@@ -290,7 +290,7 @@ def index():
 	print("40. Upgrade Specialist in Another World")
 	print("41. Warlock of the Magus World")
 	print("42. Wu Dong Qian Kun")
-	print("43. Show Complete Novels)
+	print("43. Show Complete Novels")
 	
 def IndexComplete():
 	print("44. 7 Killers")
