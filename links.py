@@ -208,42 +208,41 @@ def info(novel, book):
 		"ChapterName" : "wdqk-chapter-",
 		"NovelName" : "Wu Dong Qian Kun",
 		"author" : "Heavenly Silkworm Potato, Yellow Law"}	
-	elif novel == 44:
+	elif novel == 43:
 		info = {"link": "http://www.wuxiaworld.com/master-index/7-killers-chapter-",
-			"ChapterName" : "7k-chapter-",
-			"NovelName" : "7 Killers",
-			"author" : "Gu Long, Deathblade"}
+		"ChapterName" : "7k-chapter-",
+		"NovelName" : "7 Killers",
+		"author" : "Gu Long, Deathblade"}
+	elif novel == 44:
+		info = {"link": "http://www.wuxiaworld.com/col-index/col-volume-" + book + "-chapter-",
+		"ChapterName" : "col-chapter-",
+		"NovelName" : "Child of Light",
+		"author" : "Wang Zuo, Tang Jia San Shao"}
 	elif novel == 45:
 		info = {"link": "http://www.wuxiaworld.com/col-index/col-volume-" + book + "-chapter-",
-			"ChapterName" : "col-chapter-",
-			"NovelName" : "Child of Light",
-			"author" : "Wang Zuo, Tang Jia San Shao"}
+		"ChapterName" : "cd-chapter-",
+		"NovelName" : "Coiling Dragon",
+		"author" : "I Eat Tomatoes, RWX"}
 	elif novel == 46:
-		info = {"link": "http://www.wuxiaworld.com/col-index/col-volume-" + book + "-chapter-",
-			"ChapterName" : "cd-chapter-",
-			"NovelName" : "Coiling Dragon",
-			"author" : "I Eat Tomatoes, RWX"}
-	elif novel == 47:
 		info = {"link": "http://www.wuxiaworld.com/master-index/dkwss-chapter-",
-			"ChapterName" : "dkwss-chapter-",
-			"NovelName" : "Dragon King With Seven Stars",
-			"author" : "Gu Long, Deathblade"}
-	elif novel == 48:
+		"ChapterName" : "dkwss-chapter-",
+		"NovelName" : "Dragon King With Seven Stars",
+		"author" : "Gu Long, Deathblade"}
+	elif novel == 47:
 		info = {"link": "http://www.wuxiaworld.com/hsnt-index/",
-			"ChapterName" : "hsnt-chapter-",
-			"NovelName" : "Not Implemented",
-			"author" : "Gu Long, Deathblade"}
-	elif novel == 49:
+		"ChapterName" : "hsnt-chapter-",
+		"NovelName" : "Not Implemented",
+		"author" : "Gu Long, Deathblade"}
+	elif novel == 48:
 		info = {"link": "http://www.wuxiaworld.com/tymyd-index/chapter-",
-			"ChapterName" : "tymyd-chapter-",
-			"NovelName" : "Horizon, Bright Moon, Sabre",
-			"author" : "Gu Long, RWX"}
-	elif novel == 50:
+		"ChapterName" : "tymyd-chapter-",
+		"NovelName" : "Horizon, Bright Moon, Sabre",
+		"author" : "Gu Long, RWX"}
+	elif novel == 49:
 		info = {"link": "http://www.wuxiaworld.com/st-index/st-book-" + book + "-chapter-",
-			"ChapterName" : "st-chapter-",
-			"NovelName" : "Stellar Transformations ",
-			"author" : "I Eat Tomatoes, RWX"}
-	
+		"ChapterName" : "st-chapter-",
+		"NovelName" : "Stellar Transformations ",
+		"author" : "I Eat Tomatoes, RWX"}
 	return info
 	
 # Prints the available Novels in a userfriendly format
@@ -290,13 +289,12 @@ def index():
 	print("40. Upgrade Specialist in Another World")
 	print("41. Warlock of the Magus World")
 	print("42. Wu Dong Qian Kun")
-	print("43. Show Complete Novels")
-	
-def IndexComplete():
-	print("44. 7 Killers")
-	print("45. Child of Light")
-	print("46. Coiling Dragon")
-	print("47. Dragon King with Seven Stars")
-	print("48. Heros Shead no Trears | Not Implemented")
-	print("49. Horizon, Bright Moon, Sabre")
-	print("50. Stellar Transformations")
+	print("")
+	print("Complete Novels:")
+	print("43. 7 Killers")
+	print("44. Child of Light")
+	print("45. Coiling Dragon")
+	print("46. Dragon King with Seven Stars")
+	print("47. Heros Shead no Trears | Not Implemented")
+	print("48. Horizon, Bright Moon, Sabre")
+	print("49. Stellar Transformations")
