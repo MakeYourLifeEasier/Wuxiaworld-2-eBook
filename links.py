@@ -149,7 +149,7 @@ def info(novel, book):
 		"NovelName" : "Tales of Deamons and Gods",
 		"author" : "Mad Snail, Thyaeria"}
 	elif novel == 31:
-		info = {"link" : "http://www.wuxiaworld.com/godsfall-index/godsfall-book-" + book "-chapter-",
+		info = {"link" : "http://www.wuxiaworld.com/godsfall-index/godsfall-book-" + book + "-chapter-",
 		"ChapterName" : "gf-chapter-",
 		"NovelName" : "Godsfall",
 		"author" : "Tipsy Wanderer, RWX"}
