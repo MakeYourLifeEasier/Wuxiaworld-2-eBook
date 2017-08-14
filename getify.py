@@ -40,7 +40,7 @@ def clean(file_name_in, file_name_out, start, end):
 				flag=True
 			if flag == True and not line.startswith("<p><a"):
 				data.append(line)
-			if line.strip().startswith(end):
+			if line.strip().startswith(end) or line.strip().startswith('''<div class="code-block'''):
 				flag=False
 
 	file = open(file_name_out + ".xhtml", "w", encoding = "utf8")
