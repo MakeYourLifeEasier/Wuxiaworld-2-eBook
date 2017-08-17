@@ -19,7 +19,7 @@ def find_between(file):
 def download(link, file_name):
 	url = urllib.request.Request(
 		link,
-		data=None, 
+		data=None,
 		headers={
 			'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.47 Safari/537.36'
 		}
@@ -27,7 +27,7 @@ def download(link, file_name):
 
 	with urllib.request.urlopen(url) as response, open(file_name, 'wb') as out_file:
 		shutil.copyfileobj(response, out_file)
-		
+
 
 """Extract Text from Wuxiaworld html file and saves it into a seperate xhtml file"""
 
@@ -50,9 +50,9 @@ def clean(file_name_in, file_name_out, start, end):
 	file.write("".join(data))
 	file.write("</body>")
 	file.write("</html>")
-	
+
 	os.remove(file_name_in)
-	
+
 
 """Displays and updates the download progress bar"""
 
@@ -76,10 +76,13 @@ def update_progress(progress):
     sys.stdout.flush()
 
 
+def cover_generator(src):
+	urllib.request.urlretrieve(src, "cover.jpg")
+
 """ Saves downloaded xhtml files into the epub format while also
     generating the for the epub format nesessary container, table of contents,
     mimetype and content files"""
-    
+
 def generate(html_files, novelname, author, chaptername, chapter_s, chapter_e):
 	epub = zipfile.ZipFile(novelname + "_" + chapter_s + "-" + chapter_e + ".epub", "w")
 
@@ -106,6 +109,7 @@ def generate(html_files, novelname, author, chaptername, chapter_s, chapter_e):
 		</metadata>
 		<manifest>
 			%(manifest)s
+			<item href="cover.jpg" id="cover" media-type="image/jpeg" properties="cover-image"/>
 		</manifest>
 		<spine>
 			<itemref idref="toc" linear="no"/>
@@ -120,7 +124,7 @@ def generate(html_files, novelname, author, chaptername, chapter_s, chapter_e):
 	<meta xmlns:dc="http://purl.org/dc/elements/1.1/" name="calibre:series" content="%(series)s"/>''' % {
 	"novelname": novelname + ": " + chapter_s + "-" + chapter_e, "author": author, "series": novelname}
 	toc_manifest = '<item href="toc.xhtml" id="toc" properties="nav" media-type="application/xhtml+xml"/>'
-	
+
 	# Write each HTML file to the ebook, collect information for the index
 	for i, html in enumerate(html_files):
 		basename = os.path.basename(html)
@@ -135,7 +139,7 @@ def generate(html_files, novelname, author, chaptername, chapter_s, chapter_e):
 	"manifest": manifest + toc_manifest,
 	"spine": spine,
 	})
-	
+
 	 #Generates a Table of Contents + lost strings
 	toc_start = '''<?xml version='1.0' encoding='utf-8'?>
 	<!DOCTYPE html>
@@ -153,8 +157,8 @@ def generate(html_files, novelname, author, chaptername, chapter_s, chapter_e):
 				%(toc_mid)s
 		%(toc_end)s'''
 	toc_mid = ""
-	toc_end = '''</ol></nav></section></body></html>''' 
-		
+	toc_end = '''</ol></nav></section></body></html>'''
+
 	for i, y in enumerate(html_files):
 		ident = 0
 		chapter = find_between(html_files[i])
@@ -162,11 +166,13 @@ def generate(html_files, novelname, author, chaptername, chapter_s, chapter_e):
 		toc_mid += '''<li class="toc-Chapter-rw" id="num_%s">
 		<a href="%s">%s</a>
 		</li>''' % (i, html_files[i], chapter)
-		
-	epub.writestr("OEBPS/toc.xhtml", toc_start % {"novelname": novelname, "toc_mid": toc_mid, "toc_end": toc_end})
-	
 
-			
+	epub.writestr("OEBPS/toc.xhtml", toc_start % {"novelname": novelname, "toc_mid": toc_mid, "toc_end": toc_end})
+	epub.write("cover.jpg", "OEBPS/cover.jpg")
+	epub.close()
+	os.remove("cover.jpg")
+
+
   	#removes all the temporary files
 	for x in html_files:
 		os.remove(x)
