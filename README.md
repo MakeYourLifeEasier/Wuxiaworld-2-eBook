@@ -11,6 +11,10 @@ Or you can just donwload the standalone executable which you can find [here](htt
 - Download and save you favorite Novels from wuxiaworld.com into a .epub file
 - Automatically adds some metadata like author, title and series names
 
+### New Features
+
+- Should I add external Library's to add new features. Vote [here](http://www.strawpoll.me/13725638 "Strawpool Link")
+
 ### Prerequisites
 
 As mentioned before this script was written for Python version 3.6.1. It may work with other versions too but none are tested.
