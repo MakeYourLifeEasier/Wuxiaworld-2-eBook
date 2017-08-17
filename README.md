@@ -13,7 +13,7 @@ Or you can just donwload the standalone executable which you can find [here](htt
 
 ### New Features
 
-- Should I add external Library's to add new features. Vote [here](http://www.strawpoll.me/13725638 "Strawpool Link")
+Should I add external Library's to add new features? Vote [here](http://www.strawpoll.me/13725638 "Strawpool Link")
 
 ### Prerequisites
 
