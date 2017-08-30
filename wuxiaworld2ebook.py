@@ -28,7 +28,7 @@ for s_chapter in range(s_chapter, e_chapter + 1):
 	bulk_list.append(raw_info["link"] + s_chapter_string)
 
 #Downloads the cover
-getify.cover_generator(raw_info["cover"])
+getify.cover_generator(raw_info["cover"], str(f_chapter), e_chapter)
 
 #Does the calls for downloadingand modifying
 #and the progress bar... Don't forget the progress bar

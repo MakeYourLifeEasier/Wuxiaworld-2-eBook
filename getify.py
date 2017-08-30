@@ -4,6 +4,9 @@ import os.path
 import zipfile
 import time
 import sys
+from PIL import Image
+from PIL import ImageFont
+from PIL import ImageDraw
 
 def find_between(file):
 	f = open(file, "r", encoding = "utf8")
@@ -76,8 +79,23 @@ def update_progress(progress):
     sys.stdout.flush()
 
 
-def cover_generator(src):
+def cover_generator(src, starting, ending):
 	urllib.request.urlretrieve(src, "cover.jpg")
+	img = Image.open("cover.jpg")
+	msg = str(starting) + "-" + str(ending)
+	draw = ImageDraw.Draw(img)
+	thefont = ImageFont.truetype("arial.ttf", 75)
+	#Get's the average complementary color of the picutre
+	W, H = (400, 600)
+	img2 = img.resize((1, 1))
+	redc = 255 - img2.getpixel((0, 0))[0]
+	greebc = 255 - img2.getpixel((0, 0))[1]
+	bluec = 255 - img2.getpixel((0, 0))[2]
+	complementary = (redc, greebc, bluec)
+	w, h = draw.textsize(msg, font=thefont)
+	#Allig's and writes the text
+	draw.text(((W - w) / 2, 2), msg, complementary, font = thefont)
+	img.save("cover.jpg")
 
 """ Saves downloaded xhtml files into the epub format while also
     generating the for the epub format nesessary container, table of contents,
