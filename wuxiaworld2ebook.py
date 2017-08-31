@@ -1,51 +1,112 @@
 import links
 import getify
+import sqlite3 as sql
+import tkinter as tk
+from tkinter import ttk
 
-book = 0
+#Initializing Stuff
+main = tk.Tk()
+main.title("Wuxiaworld-2-eBook")
+main.geometry("375x150")
+main.resizable(False, False)
+app = tk.Frame(main)
+app.grid()
+conn = sql.connect("novels.db")
+c = conn.cursor()
 
-print (links.index())
+#Enables book number field only on novels that are using it
+def on_field_change(index, value, op):
+    if novel.get() in hasbook:
+        book_number_chosen.configure(state = "enabled")
+    else:
+        book_number_chosen.configure(state = "disabled")
 
-# Gets the choise of novels and chapters
-novel = input("Which Novel do you want to read? (Enter a number): ")
-novel = int(novel)
-novelsWithBooks = [9, 21, 30, 37, 43, 44, 48, 50]
-if novel in novelsWithBooks:
-	book = input("Which Book do you want to read?")
-raw_info = links.info(novel, book)
-s_chapter = input("What chapter do you want to start at?: ")
-f_chapter = s_chapter
-s_chapter = int(s_chapter)
-x_chapter = s_chapter
-e_chapter = input("Till what chapter do you want to read?: ")
-end_chapter = e_chapter
-e_chapter = int(e_chapter)
+def button_press():
+    #Getting Information
+    generate_button.configure(state = "disabled")
+    s_chapter = starting_chapter.get()
+    reset = str(s_chapter)
+    e_chapter = ending_chapter.get()
+    booknr = book_number.get()
+    name = novel.get()
+
+    #Getting relevant novel Information
+    raw_info = []
+    for i in db:
+        if name in i[0]:
+            raw_info.append(i)
+    raw_info = raw_info[0]
+    if raw_info[5] == 0:
+        link = raw_info[1]
+    else:
+        link = raw_info[1] + str(booknr) + "-chapter-"
+
+    #Generating list with download links
+    bulk_list = []
+    for s_chapter in range(s_chapter, e_chapter + 1):
+        bulk_list.append(link + str(s_chapter))
+    s_chapter = reset
+
+    getify.cover_generator(raw_info[4], s_chapter, str(e_chapter))
+
+    #Calls function's for downloading, cleanup and managing
+    #a list of file name's for cleanup, ToC and packing
+    y = int(s_chapter)
+    file_list = []
+    for x in range(len(bulk_list)):
+        getify.download(bulk_list[x], str(s_chapter) + ".xhtml")
+        getify.clean(str(s_chapter) + ".xhtml", raw_info[2] + str(s_chapter), '<div itemprop="articleBody"', '''<div class="code-block''')
+        file_list.append(raw_info[2] + str(s_chapter) + ".xhtml")
+        s_chapter = int(s_chapter) + 1
+
+    getify.generate(file_list, raw_info[0], raw_info[3], raw_info[2], reset, str(e_chapter))
+    generate_button.configure(state = "enabled")
 
 
-# Generates Link list
-bulk_list = []
-for s_chapter in range(s_chapter, e_chapter + 1):
-	s_chapter_string = str(s_chapter)
-	bulk_list.append(raw_info["link"] + s_chapter_string)
+#Getting information from Database
+c.execute("SELECT * FROM 'Information'")
+db = c.fetchall()
+namelist = []
+hasbook = []
+for i in db:
+    namelist.append(i[0])
+    if i[5] == 1:
+        hasbook.append(i[0])
+namelist.sort()
 
-#Downloads the cover
-getify.cover_generator(raw_info["cover"], str(f_chapter), e_chapter)
+#Code for the Combobox and the label
+label1 = ttk.Label(app, text = "Select Novel:")
+label1.grid(column = 0, row = 0, pady = 10, sticky = "W")
+novel = tk.StringVar()
+novel_chosen = ttk.Combobox(app, width = 42, textvariable = novel, state = "readonly")
+novel.trace("w", on_field_change)
+novel_chosen["values"] = namelist
+novel_chosen.grid(column = 1, row = 0)
+novel_chosen.current(0)
 
-#Does the calls for downloadingand modifying
-#and the progress bar... Don't forget the progress bar
-array_length = len(bulk_list)
-file_list = []
-for x in range(array_length):
-	x_chapter = str(x_chapter)
-	getify.download(bulk_list[x], x_chapter + ".xhtml")
-	getify.clean(x_chapter + ".xhtml", raw_info["ChapterName"] + x_chapter, '<div itemprop="articleBody"', '''<div class="code-block''')
-	file_list.append(raw_info["ChapterName"] + x_chapter + ".xhtml")
-	x_chapter = int(x_chapter)
-	x_chapter += 1
-	getify.update_progress(x/array_length)
+#Code for the Book Entry and label
+label2 = ttk.Label(app, text = "Book Number: ")
+label2.grid(column = 0, row = 1, sticky = "W")
+book_number = tk.IntVar()
+book_number_chosen = ttk.Entry(app, width = 5, textvariable = book_number, state = "disabled")
+book_number_chosen.grid(column = 1, row = 1, sticky = "W")
 
-#Generates the eBook
-print("")
-print("Creating ePub...")
-getify.generate(file_list, raw_info["NovelName"], raw_info["author"], raw_info["ChapterName"], f_chapter, end_chapter)
+#Code for the starting chapter Entry and label
+label3 = ttk.Label(app, text = "Starting Chapter: ")
+label3.grid(column = 0, row = 2, pady = 10, sticky = "W")
+starting_chapter = tk.IntVar()
+starting_chapter_chosen = ttk.Entry(app, width = 5, textvariable = starting_chapter)
+starting_chapter_chosen.grid(column = 1, row = 2, sticky = "W")
 
-print ("Success . . . Hopefully")
+#Cpde fpr the ending chapter Entry and label
+label4 = ttk.Label(app, text = "Ending Chapter: ")
+label4.grid(column = 0, row = 3, sticky = "W")
+ending_chapter = tk.IntVar()
+ending_chapter_chosen = ttk.Entry(app, width = 5, textvariable = ending_chapter)
+ending_chapter_chosen.grid(column = 1, row = 3, sticky = "W")
+
+#Code for "Generate" button
+generate_button = ttk.Button(app, text = "Generate", command = button_press)
+generate_button.grid(column = 1, row = 4, sticky = "E")
+
+main.mainloop()
