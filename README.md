@@ -3,13 +3,12 @@ This Python script will download chapters from novels availaible on wuxiaworld.c
 
 ## Getting Started
 
-To run this script you'll need to have Python 3.6.1 install which you can find [here](https://www.python.org/downloads/ "Python Download Link").
-Or you can just donwload the standalone executable which you can find [here](https://github.com/MrHaCkEr/Wuxiaworld-2-eBook/releases "GitHub releases 1.2").
+To run this script you'll need to have Python 3.6.x install which you can find [here](https://www.python.org/downloads/ "Python Download Link").
 
 ### Features
 
 - Download and save you favorite Novels from wuxiaworld.com into a .epub file
-- Automatically adds some metadata like author, title and series names
+- Automatically adds some metadata like author, title and cover
 
 ### Prerequisites
 
@@ -23,8 +22,7 @@ pip install -r requirements.txt
 
 ### Usage
 
-If you downloaded the executable just start it.
-Else download the script and navigate to the folder using the console then write
+Download the script and navigate to the folder using the console then write
 
 ```
 python wuxiaworld2ebook.py
@@ -36,18 +34,16 @@ if you didn't add Python to the PATH variable during the installation or afterwa
 path/where/you/installed/python.exe wuxiaworld2ebook.py
 ```
 
-then you shoud see all the available Novels thet are supported (which are almost all). Then just enter the number which is assigned to the novel you want to read.
-Afterwards the program will ask for the starting chapter and the end chapter. Just enter the chapters you want and hit enter.
-Now it should download the chapters you wanted and will save them into an .epub file that is located in the folder the script or executable is located in.
+After that just look for the novel you want to read, enter the chapter's you want to include to the eBook, enter the book number of the novel you want to read (if applicable) and hit the "Generate" Button. Keep it mind that it will take some time for the script to finish, so don't close the window or the console if the program doesn't respond.
 
 ## Keep in mind!
 
-This script could be buggy since the core of the code was never build for a public release. Although the code works as far as I know there a a lot of small bugs that I have yet to fix. If you come across some of them feel free to let me know so I have a general idea what is still necesarry to fix.
+If you come across bug's or suggestion's for future updaes don't hesitate to open up a "new Issue" in the issue tab or write me a e-mail at bloodvioletssword@gmail.com.
 
-### ToDo list
+### Planned feature's and updates
 
-- Fix table of contents
-- Add missing Novels
+- Better Scraping Algorithm
+- Improved Cover Editing
 
 ## License
 
