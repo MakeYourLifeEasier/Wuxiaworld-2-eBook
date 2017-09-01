@@ -1,4 +1,3 @@
-import links
 import getify
 import sqlite3 as sql
 import tkinter as tk
