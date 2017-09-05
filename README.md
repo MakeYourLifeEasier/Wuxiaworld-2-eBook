@@ -13,7 +13,7 @@ To run this script you'll need to have Python 3.6.x install which you can find [
 ### Prerequisites
 
 As mentioned before this script was written for Python version 3.6.x. It may work with other versions too but none are tested.
-Additionally the Python image library (Pillow) is required.
+Additionally the Python image library (Pillow) and Beautifulsoup4 is required.
 To install all dependencies just use the console to navigate into the project folder and write
 
 ```
