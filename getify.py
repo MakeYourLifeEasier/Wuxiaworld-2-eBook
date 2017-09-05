@@ -7,16 +7,13 @@ import sys
 from PIL import Image
 from PIL import ImageFont
 from PIL import ImageDraw
+from bs4 import BeautifulSoup
 
 def find_between(file):
 	f = open(file, "r", encoding = "utf8")
-	s = f.read()
-	try:
-		start = s.index("Chapter") + len("Chapter")
-		end = s.index("<", start )
-		return "Chapter" + s[start:end]
-	except ValueError:
-		return ""
+	soup = BeautifulSoup(f, 'html.parser')
+	return soup.title
+
 
 """Downloads web page from Wuxiaworld and saves it into the folder where the programm is located"""
 def download(link, file_name):
@@ -35,25 +32,31 @@ def download(link, file_name):
 """Extract Text from Wuxiaworld html file and saves it into a seperate xhtml file"""
 
 def clean(file_name_in, file_name_out, start, end):
-	data=[]
-	flag=False
-	with open(file_name_in,'r', encoding = "utf8") as f:
-		for line in f:
-			if line.startswith(start):
-				flag=True
-			if flag == True and not line.startswith("<p><a"):
-				data.append(line)
-			if line.strip().startswith(end) or line.strip().startswith('''<div class="code-block'''):
-				flag=False
 
+	raw = open(file_name_in, "r", encoding = "utf8")
+	soup = BeautifulSoup(raw, 'html.parser')
+	soup = soup.find(itemprop="articleBody")
+	text = soup.text
+	text = text.replace("Previous Chapter", "").replace("Next Chapter", "")
+	text = text.lstrip().rstrip()
+	chapter_title = text.split('\n', 1)[0]
+	text = text.replace(chapter_title, "")
+	text = text.lstrip().rstrip()
+	text = text.split("\n\r")
+	text = text[0]
+	text = text.replace("\n", "</p>\n<p>")
+	raw.close()
 	file = open(file_name_out + ".xhtml", "w", encoding = "utf8")
-
-	file.write("<html>")
-	file.write("<body>")
-	file.write("".join(data))
-	file.write("</body>")
-	file.write("</html>")
-
+	file.write('<html xmlns="http://www.w3.org/1999/xhtml">')
+	file.write("\n<head>")
+	file.write("\n<title>" + chapter_title + "</title>")
+	file.write("\n</head>")
+	file.write("\n<body>")
+	file.write("\n<strong>" + chapter_title + "</strong>" + "\n<p>")
+	file.write(text)
+	file.write("</p>")
+	file.write("\n</body>")
+	file.write("\n</html>")
 	os.remove(file_name_in)
 
 
