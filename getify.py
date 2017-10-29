@@ -61,7 +61,8 @@ def clean(file_name_in, file_name_out, start, end):
 
 
 """Displays and updates the download progress bar"""
-
+# This function is not used anymore but may be added later on.
+# Still fully functional though
 def update_progress(progress):
     barLength = 25 # Modify this to change the length of the progress bar
     status = ""
@@ -81,7 +82,11 @@ def update_progress(progress):
     sys.stdout.write(text)
     sys.stdout.flush()
 
-
+""" This will download a cover, calculating the average complementary color
+    and will wirte the chapter range on the upper half of the cover centered
+    in the before mentioned color.
+    Todo: Improve CCR to ignore bright parts of cover's that makes text sometimes
+    hard to read."""
 def cover_generator(src, starting, ending):
 	urllib.request.urlretrieve(src, "cover.jpg")
 	img = Image.open("cover.jpg")
@@ -102,7 +107,9 @@ def cover_generator(src, starting, ending):
 
 """ Saves downloaded xhtml files into the epub format while also
     generating the for the epub format nesessary container, table of contents,
-    mimetype and content files"""
+    mimetype and content files
+    ToDo: Generaliseing this part of the code and make it standalone accessible.
+    Sidenote: Will take a lot of time."""
 
 def generate(html_files, novelname, author, chaptername, chapter_s, chapter_e):
 	epub = zipfile.ZipFile(novelname + "_" + chapter_s + "-" + chapter_e + ".epub", "w")
