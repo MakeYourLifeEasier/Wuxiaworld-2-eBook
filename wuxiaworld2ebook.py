@@ -7,7 +7,7 @@ from tkinter import ttk
 main = tk.Tk()
 main.title("Wuxiaworld-2-eBook")
 main.geometry("375x150")
-main.resizable(False, False)
+main.resizable(True, True)
 app = tk.Frame(main)
 app.grid()
 conn = sql.connect("novels.db")
