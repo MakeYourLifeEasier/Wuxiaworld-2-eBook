@@ -3,7 +3,7 @@ This Python script will download chapters from novels availaible on wuxiaworld.c
 
 ## Getting Started
 
-To run this script you'll need to have Python 3.6.x install which you can find [here](https://www.python.org/downloads/ "Python Download Link").
+To run this script you'll need to have Python 3.6.x installed which you can find [here](https://www.python.org/downloads/ "Python Download Link").
 
 ### Features
 
@@ -13,7 +13,7 @@ To run this script you'll need to have Python 3.6.x install which you can find [
 ### Prerequisites
 
 As mentioned before this script was written for Python version 3.6.x. It may work with other versions too but none are tested.
-Additionally the Python image library (Pillow) and Beautifulsoup4 is required.
+Additionally the Python image library (Pillow) and Beautifulsoup4 are required.
 To install all dependencies just use the console to navigate into the project folder and write
 
 ```
@@ -28,13 +28,13 @@ Download the script and navigate to the folder using the console then write
 python wuxiaworld2ebook.py
 ```
 
-if you didn't add Python to the PATH variable during the installation or afterwards the write
+or just use the start.bat file. If you didn't add Python to the PATH variable during the installation or afterwards the write
 
 ```
 path/where/you/installed/python.exe wuxiaworld2ebook.py
 ```
 
-After that just look for the novel you want to read, enter the chapter's you want to include to the eBook, enter the book number of the novel you want to read (if applicable) and hit the "Generate" Button. Keep it mind that it will take some time for the script to finish, so don't close the window or the console if the program doesn't respond.
+After that just select the novel you want to read, enter the chapter range you want to include to the eBook, enter the book number of the novel you want to read (if applicable) and hit the "Generate" Button. Keep it mind that it will take some time for the script to finish, so don't close the window or the console if the program doesn't respond.
 
 ## Keep in mind!
 
@@ -42,7 +42,6 @@ If you come across bug's or suggestion's for future updaes don't hesitate to ope
 
 ### Planned feature's and updates
 
-- Better Scraping Algorithm
 - Improved Cover Editing
 
 ## License
