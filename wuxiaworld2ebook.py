@@ -37,7 +37,7 @@ file_list = []
 for x in range(array_length):
 	x_chapter = str(x_chapter)
 	getify.download(bulk_list[x], x_chapter + ".xhtml")
-	getify.clean(x_chapter + ".xhtml", raw_info["ChapterName"] + x_chapter, '<div itemprop="articleBody"', '''<div class="code-block''')
+	getify.clean(x_chapter + ".xhtml", raw_info["ChapterName"] + x_chapter, '<div itemprop="articleBody"', '''<div class='code-block''')
 	file_list.append(raw_info["ChapterName"] + x_chapter + ".xhtml")
 	x_chapter = int(x_chapter)
 	x_chapter += 1
