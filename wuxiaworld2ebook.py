@@ -54,7 +54,7 @@ def button_press():
     file_list = []
     for x in range(len(bulk_list)):
         getify.download(bulk_list[x], str(s_chapter) + ".xhtml")
-        getify.clean(x_chapter + ".xhtml", raw_info["ChapterName"] + x_chapter, '<div itemprop="articleBody"', '''<div class='code-block''')
+        getify.clean(str(s_chapter) + ".xhtml", raw_info[2] + str(s_chapter), '<div itemprop="articleBody"', '''<div class="code-block''')
         file_list.append(raw_info[2] + str(s_chapter) + ".xhtml")
         s_chapter = int(s_chapter) + 1
 
