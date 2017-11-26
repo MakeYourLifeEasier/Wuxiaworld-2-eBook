@@ -38,6 +38,7 @@ After that just select the novel you want to read, enter the chapter range you w
 
 ## Keep in mind!
 
+If you have troube with missing text in some Novels use [the legacy console application](https://github.com/MrHaCkEr/Wuxiaworld-2-eBook/tree/legacy-console-application). This script scrapes differently and could resolve problems.
 If you come across bug's or suggestion's for future updaes don't hesitate to open up a "new Issue" in the issue tab or write me a e-mail at bloodvioletssword@gmail.com.
 
 ### Planned feature's and updates
