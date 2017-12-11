@@ -40,7 +40,18 @@ After that just select the novel you want to read, enter the chapter range you w
 
 If you have troube with missing text in some Novels use [the legacy console application](https://github.com/MrHaCkEr/Wuxiaworld-2-eBook/tree/legacy-console-application). This script scrapes differently and could resolve problems.
 
-If you come across bug's or suggestion's for future updaes don't hesitate to open up a "new Issue" in the issue tab or write me a e-mail at bloodvioletssword@gmail.com.
+If you come across bug's or suggestion's for future updates don't hesitate to open up a "new Issue" in the issue tab or write me a e-mail at bloodvioletssword@gmail.com.
+
+Novels that are not included and won't be included in the near future:
+
+- Charm of Soul Pets
+- Demon Hunter
+- Heavenly Jewel Change
+- I Reincarnated for Nothing
+- Red Storm
+- Terror Infinity
+- Unrivaled Tang Sect
+
 
 ### Planned feature's and updates
 
