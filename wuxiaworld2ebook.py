@@ -4,6 +4,7 @@ import tkinter as tk
 from tkinter import ttk
 
 #Initializing Stuff
+
 main = tk.Tk()
 main.title("Wuxiaworld-2-eBook")
 main.geometry("375x150")
@@ -15,10 +16,13 @@ c = conn.cursor()
 
 #Enables book number field only on novels that are using it
 def on_field_change(index, value, op):
-    if novel.get() in hasbook:
-        book_number_chosen.configure(state = "enabled")
-    else:
-        book_number_chosen.configure(state = "disabled")
+    try:
+        if novel.get() in hasbook:
+            book_number_chosen.configure(state = "enabled")
+        else:
+            book_number_chosen.configure(state = "disabled")
+    except:
+        pass
 
 def button_press():
     #Getting Information
@@ -54,7 +58,7 @@ def button_press():
     file_list = []
     for x in range(len(bulk_list)):
         getify.download(bulk_list[x], str(s_chapter) + ".xhtml")
-        getify.clean(str(s_chapter) + ".xhtml", raw_info[2] + str(s_chapter), '<div itemprop="articleBody"', '''<div class="code-block''')
+        getify.clean(str(s_chapter) + ".xhtml", raw_info[2] + str(s_chapter), name, '''<div class="code-block''')
         file_list.append(raw_info[2] + str(s_chapter) + ".xhtml")
         s_chapter = int(s_chapter) + 1
 
@@ -108,4 +112,7 @@ ending_chapter_chosen.grid(column = 1, row = 3, sticky = "W")
 generate_button = ttk.Button(app, text = "Generate", command = button_press)
 generate_button.grid(column = 1, row = 4, sticky = "E")
 
-main.mainloop()
+
+
+if __name__=="__main__":
+    main.mainloop()
