@@ -2,6 +2,7 @@ import getify
 import sqlite3 as sql
 import tkinter as tk
 from tkinter import ttk
+from urllib.error import HTTPError, URLError
 
 #Initializing Stuff
 
@@ -57,10 +58,18 @@ def button_press():
     y = int(s_chapter)
     file_list = []
     for x in range(len(bulk_list)):
-        getify.download(bulk_list[x], str(s_chapter) + ".xhtml")
-        getify.clean(str(s_chapter) + ".xhtml", raw_info[2] + str(s_chapter), name, '''<div class="code-block''')
-        file_list.append(raw_info[2] + str(s_chapter) + ".xhtml")
-        s_chapter = int(s_chapter) + 1
+        try:
+            getify.download(bulk_list[x], str(s_chapter) + ".xhtml")
+        except HTTPError as e:
+            # Return code error (e.g. 404, 501, ...)
+            print('URL: {}, HTTPError: {} - {}'.format(bulk_list[x], e.code, e.reason))
+        except URLError as e:
+            # Not an HTTP-specific error (e.g. connection refused)
+            print('URL: {}, URLError: {}'.format(bulk_list[x], e.reason))
+        else:
+            getify.clean(str(s_chapter) + ".xhtml", raw_info[2] + str(s_chapter), name, '''<div class="code-block''')
+            file_list.append(raw_info[2] + str(s_chapter) + ".xhtml")
+            s_chapter = int(s_chapter) + 1
 
     getify.generate(file_list, raw_info[0], raw_info[3], raw_info[2], reset, str(e_chapter))
     generate_button.configure(state = "enabled")
