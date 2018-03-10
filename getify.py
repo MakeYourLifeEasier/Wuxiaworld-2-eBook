@@ -32,22 +32,12 @@ def download(link, file_name):
     """Extract Text from Wuxiaworld html file and saves it into a seperate xhtml file"""
 
 def clean(file_name_in, file_name_out, start, end):
-    has_spoiler = None
     raw = open(file_name_in, "r", encoding = "utf8")
     soup = BeautifulSoup(raw, 'lxml')
-    soup = soup.find(itemprop="articleBody")
-    if soup.find(attrs={"class" : "collapseomatic_content"}) != None:
-        has_spoiler = soup.find(attrs={"class" : "collapseomatic_content"}).extract()
-        has_spoiler = has_spoiler.text.lstrip().rstrip()
-    text = soup.text
-    text = text.replace("Previous Chapter", "").replace("Next Chapter", "")
-    text = text.lstrip().rstrip()
-    chapter_title = text.split('\n', 1)[0]
-    text = text.replace(chapter_title, "")
-    text = text.lstrip().rstrip()
-    text = text.split("\n\r")
-    text = text[0]
-    text = text.replace("\n", "</p>\n<p>")
+    soup = soup.find(class_="fr-view")
+    chapter_title = soup.find("strong").text
+    if chapter_title = None:
+        chapter_title = "Why I write such good books"
     raw.close()
     file = open(file_name_out + ".xhtml", "w", encoding = "utf8")
     file.write('<html xmlns="http://www.w3.org/1999/xhtml">')
@@ -57,11 +47,11 @@ def clean(file_name_in, file_name_out, start, end):
     file.write("\n<title>" + chapter_title + "</title>")
     file.write("\n</head>")
     file.write("\n<body>")
-    file.write("\n<strong>" + chapter_title + "</strong>" + "\n<p>")
-    file.write(text)
-    file.write("</p>")
-    if has_spoiler != None:
-        file.write("<strong>The chapter name is: " + has_spoiler + "</strong>")
+#    file.write("\n<strong>" + chapter_title + "</strong>" + "\n<p>")
+    file.write(str(soup))
+#    file.write("</p>")
+#    if has_spoiler != None:
+#        file.write("<strong>The chapter name is: " + has_spoiler + "</strong>")
     file.write("\n</body>")
     file.write("\n</html>")
     os.remove(file_name_in)
