@@ -18,7 +18,7 @@ To run this script you'll need to have Python 3.6.x installed which you can find
 ### Prerequisites
 
 As mentioned before this script was written for Python version 3.6.x. It may work with other versions too but none are tested.
-Additionally the Python image library (Pillow) and Beautifulsoup4 are required.
+Additionally the Python image library (Pillow), lxml and Beautifulsoup4 are required.
 To install all dependencies just use the console to navigate into the project folder and write
 
 ```

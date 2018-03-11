@@ -4,6 +4,7 @@ import os.path
 import zipfile
 import time
 import sys
+import re
 from PIL import Image
 from PIL import ImageFont
 from PIL import ImageDraw
@@ -31,13 +32,14 @@ def download(link, file_name):
 
     """Extract Text from Wuxiaworld html file and saves it into a seperate xhtml file"""
 
-def clean(file_name_in, file_name_out, start, end):
+def clean(file_name_in, file_name_out, start):
     raw = open(file_name_in, "r", encoding = "utf8")
     soup = BeautifulSoup(raw, 'lxml')
     soup = soup.find(class_="fr-view")
     chapter_title = soup.find("strong").text
-    if chapter_title = None:
-        chapter_title = "Why I write such good books"
+    if len(chapter_title) == 0:
+        chapter_number = re.sub('[^0-9]','', file_name_out)
+        chapter_title = "Chapter " + chapter_number
     raw.close()
     file = open(file_name_out + ".xhtml", "w", encoding = "utf8")
     file.write('<html xmlns="http://www.w3.org/1999/xhtml">')
