@@ -4,7 +4,6 @@ import os.path
 import zipfile
 import time
 import sys
-import re
 from PIL import Image
 from PIL import ImageFont
 from PIL import ImageDraw
@@ -33,13 +32,17 @@ def download(link, file_name):
     """Extract Text from Wuxiaworld html file and saves it into a seperate xhtml file"""
 
 def clean(file_name_in, file_name_out, start):
+    has_spoiler = None
     raw = open(file_name_in, "r", encoding = "utf8")
     soup = BeautifulSoup(raw, 'lxml')
+    chapter_title = soup.find(class_="caption clearfix")
+    chapter_title = chapter_title.find("h4")
+    if chapter_title.attrs["class"][0] == "text-spoiler":
+        has_spoiler = chapter_title.text
+        chapter_title = "Chapter name hidden due to potential spoilers"
+    else:
+        chapter_title = chapter_title.text
     soup = soup.find(class_="fr-view")
-    chapter_title = soup.find("strong").text
-    if len(chapter_title) == 0:
-        chapter_number = re.sub('[^0-9]','', file_name_out)
-        chapter_title = "Chapter " + chapter_number
     raw.close()
     file = open(file_name_out + ".xhtml", "w", encoding = "utf8")
     file.write('<html xmlns="http://www.w3.org/1999/xhtml">')
@@ -49,11 +52,9 @@ def clean(file_name_in, file_name_out, start):
     file.write("\n<title>" + chapter_title + "</title>")
     file.write("\n</head>")
     file.write("\n<body>")
-#    file.write("\n<strong>" + chapter_title + "</strong>" + "\n<p>")
     file.write(str(soup))
-#    file.write("</p>")
-#    if has_spoiler != None:
-#        file.write("<strong>The chapter name is: " + has_spoiler + "</strong>")
+    if has_spoiler != None:
+        file.write("<strong>The chapter name is: " + has_spoiler + "</strong>")
     file.write("\n</body>")
     file.write("\n</html>")
     os.remove(file_name_in)
