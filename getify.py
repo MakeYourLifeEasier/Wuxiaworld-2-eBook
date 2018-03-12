@@ -48,7 +48,7 @@ def clean(file_name_in, file_name_out, start):
     file.write('<html xmlns="http://www.w3.org/1999/xhtml">')
     file.write("\n<head>")
     if start == "Desolate Era":
-        chapter_title = chapter_title[chapter_title.index("–") + 2:]
+        chapter_title = chapter_title[chapter_title.index(",") + 1:]
     file.write("\n<title>" + chapter_title + "</title>")
     file.write("\n</head>")
     file.write("\n<body>")
