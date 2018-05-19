@@ -47,8 +47,6 @@ def clean(file_name_in, file_name_out, start):
     file = open(file_name_out + ".xhtml", "w", encoding = "utf8")
     file.write('<html xmlns="http://www.w3.org/1999/xhtml">')
     file.write("\n<head>")
-    if start == "Desolate Era":
-        chapter_title = chapter_title[chapter_title.index(",") + 1:]
     file.write("\n<title>" + chapter_title + "</title>")
     file.write("\n</head>")
     file.write("\n<body>")
@@ -131,7 +129,7 @@ def generate(html_files, novelname, author, chaptername, chapter_s, chapter_e):
           <rootfiles>
             <rootfile full-path="OEBPS/Content.opf" media-type="application/oebps-package+xml"/>
           </rootfiles>
-        </container>''');
+        </container>''')
 
     # The index file is another XML file, living per convention
     # in OEBPS/Content.xml
