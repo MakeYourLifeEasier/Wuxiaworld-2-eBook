@@ -8,6 +8,7 @@ from PIL import Image
 from PIL import ImageFont
 from PIL import ImageDraw
 from bs4 import BeautifulSoup
+import uuid
 
 def find_between(file):
     f = open(file, "r", encoding = "utf8")
@@ -15,7 +16,7 @@ def find_between(file):
     return soup.title
 
 
-    """Downloads web page from Wuxiaworld and saves it into the folder where the programm is located"""
+"""Downloads web page from Wuxiaworld and saves it into the folder where the programm is located"""
 def download(link, file_name):
     url = urllib.request.Request(
         link,
@@ -43,6 +44,8 @@ def clean(file_name_in, file_name_out, start):
     else:
         chapter_title = chapter_title.text
     soup = soup.find(class_="fr-view")
+    for a in soup.find_all("a"):
+        a.decompose()
     raw.close()
     file = open(file_name_out + ".xhtml", "w", encoding = "utf8")
     file.write('<html xmlns="http://www.w3.org/1999/xhtml">')
@@ -50,6 +53,7 @@ def clean(file_name_in, file_name_out, start):
     file.write("\n<title>" + chapter_title + "</title>")
     file.write("\n</head>")
     file.write("\n<body>")
+    file.write("\n<h1>" + chapter_title + "</h1>")
     file.write(str(soup))
     if has_spoiler != None:
         file.write("<strong>The chapter name is: " + has_spoiler + "</strong>")
@@ -133,8 +137,9 @@ def generate(html_files, novelname, author, chaptername, chapter_s, chapter_e):
 
     # The index file is another XML file, living per convention
     # in OEBPS/Content.xml
+    uniqueid = uuid.uuid1().hex
     index_tpl = '''<package version="3.1"
-    xmlns="http://www.idpf.org/2007/opf">
+    xmlns="http://www.idpf.org/2007/opf" unique-identifier="''' + uniqueid + '''">
             <metadata>
                 %(metadata)s
             </metadata>
@@ -143,7 +148,7 @@ def generate(html_files, novelname, author, chaptername, chapter_s, chapter_e):
                 <item href="cover.jpg" id="cover" media-type="image/jpeg" properties="cover-image"/>
             </manifest>
             <spine>
-                <itemref idref="toc" linear="no"/>
+                <itemref idref="toc"/>
                 %(spine)s
             </spine>
         </package>'''
@@ -152,8 +157,9 @@ def generate(html_files, novelname, author, chaptername, chapter_s, chapter_e):
     spine = ""
     metadata = '''<dc:title xmlns:dc="http://purl.org/dc/elements/1.1/">%(novelname)s</dc:title>
         <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:ns0="http://www.idpf.org/2007/opf" ns0:role="aut" ns0:file-as="Unbekannt">%(author)s</dc:creator>
-        <meta xmlns:dc="http://purl.org/dc/elements/1.1/" name="calibre:series" content="%(series)s"/>''' % {
-        "novelname": novelname + ": " + chapter_s + "-" + chapter_e, "author": author, "series": novelname}
+        <dc:language xmlns:dc="http://purl.org/dc/elements/1.1/">en</dc:language>
+        <dc:identifier xmlns:dc="http://purl.org/dc/elements/1.1/">%(uuid)s"</dc:identifier>''' % {
+        "novelname": novelname + ": " + chapter_s + "-" + chapter_e, "author": author, "uuid": uniqueid}
     toc_manifest = '<item href="toc.xhtml" id="toc" properties="nav" media-type="application/xhtml+xml"/>'
 
     # Write each HTML file to the ebook, collect information for the index
