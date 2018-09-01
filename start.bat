@@ -1,2 +1,2 @@
 @echo off
-start python wuxiaworld2ebook.py
+start python wuxiaworld2ebook.py &
