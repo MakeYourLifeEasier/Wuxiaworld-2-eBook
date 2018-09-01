@@ -102,3 +102,6 @@ ENV/
 
 #Every new feature start's with:
 test.py
+
+*.idea
+*.db

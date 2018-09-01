@@ -13,7 +13,7 @@ import uuid
 def find_between(file):
     f = open(file, "r", encoding = "utf8")
     soup = BeautifulSoup(f, 'html.parser')
-    return soup.title
+    return soup.title.string
 
 
 """Downloads web page from Wuxiaworld and saves it into the folder where the programm is located"""
