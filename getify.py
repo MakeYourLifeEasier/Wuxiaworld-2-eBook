@@ -37,14 +37,15 @@ def clean(file_name_in, file_name_out, start):
     raw = open(file_name_in, "r", encoding = "utf8")
     soup = BeautifulSoup(raw, 'lxml')
     chapter_title = soup.find(class_="caption clearfix")
+    content = chapter_title.find_next_sibling(class_="fr-view")
     chapter_title = chapter_title.find("h4")
     if chapter_title.attrs["class"][0] == "text-spoiler":
         has_spoiler = chapter_title.text
         chapter_title = "Chapter name hidden due to potential spoilers"
     else:
         chapter_title = chapter_title.text
-    soup = soup.find(class_="fr-view")
-    for a in soup.find_all("a"):
+
+    for a in content.find_all("a"):
         a.decompose()
     raw.close()
     file = open(file_name_out + ".xhtml", "w", encoding = "utf8")
@@ -54,7 +55,7 @@ def clean(file_name_in, file_name_out, start):
     file.write("\n</head>")
     file.write("\n<body>")
     file.write("\n<h1>" + chapter_title + "</h1>")
-    file.write(str(soup))
+    file.write(str(content))
     if has_spoiler != None:
         file.write("<strong>The chapter name is: " + has_spoiler + "</strong>")
     file.write("\n</body>")
