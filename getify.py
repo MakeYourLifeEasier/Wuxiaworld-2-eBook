@@ -48,7 +48,7 @@ def clean(file_name_in, file_name_out, start):
     for a in content.find_all("a"):
         a.decompose()
     raw.close()
-    file = open(file_name_out + ".xhtml", "w", encoding = "utf8")
+    file = open(file_name_out, "w", encoding = "utf8")
     file.write('<html xmlns="http://www.w3.org/1999/xhtml">')
     file.write("\n<head>")
     file.write("\n<title>" + chapter_title + "</title>")
@@ -119,7 +119,7 @@ def cover_generator(src, starting, ending):
     Sidenote: Will take a lot of time."""
 
 
-def generate(html_files, novelname, author, chaptername, chapter_s, chapter_e):
+def generate(html_files, novelname, author, chaptername, chapter_s, chapter_e, cleanup=True):
     epub = zipfile.ZipFile(novelname + "_" + chapter_s + "-" + chapter_e + ".epub", "w")
 
     # The first file must be named "mimetype"
@@ -212,5 +212,8 @@ def generate(html_files, novelname, author, chaptername, chapter_s, chapter_e):
 
 
     #removes all the temporary files
-    for x in html_files:
-        os.remove(x)
+    if cleanup:
+        print("Cleaning up...")
+        for html_file in os.listdir(novelname):
+            os.remove(os.path.join(novelname, html_file))
+        os.rmdir(novelname)
