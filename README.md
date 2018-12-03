@@ -1,8 +1,4 @@
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=U7KDYY9UB9PMY)
-# Attention
-Last huge update coming in the next couple of weeks. After the update I won't add new features and will only maintain functionality of the program.
-So if you have a suggestion that you think should be implemented, open up a new Issue or write me an E-Mail to  	bloodviolet@bloodviolet.tech.
-The last update will include a CSS Stylesheet that will hopefully make them look like they were professionally edited. So keep an eye out  for upcomming updates :)
 
 # Wuxiaworld-2-eBook
 This Python script will download chapters from novels availaible on wuxiaworld.com and saves them into the .epub format.
@@ -44,9 +40,7 @@ After that just select the novel you want to read, enter the chapter range you w
 
 ## Keep in mind!
 
-If you have troube with missing text in some Novels use [the legacy console application](https://github.com/MrHaCkEr/Wuxiaworld-2-eBook/tree/legacy-console-application). This script scrapes differently and could resolve problems but may need to be modified to work.
-
-If you come across bug's or suggestion's for future updates don't hesitate to open up a "new Issue" in the issue tab or write me a e-mail at bloodviolet@bloodviolet.tech.
+If you come across bug's or suggestion's for future updates don't hesitate to open up a "new Issue" in the issue tab or write me a e-mail at bloodvioletssword@gmail.com.
 
 Novels that are not included and won't be included in the near future:
 
