@@ -4,13 +4,14 @@ import tkinter as tk
 from tkinter import ttk
 from urllib.error import HTTPError, URLError
 import os
+import json
 from os import path
 
 #Initializing Stuff
 
 main = tk.Tk()
 main.title("Wuxiaworld-2-eBook")
-main.geometry("400x190")
+main.geometry("535x190")
 main.resizable(True, True)
 app = tk.Frame(main)
 app.grid()
@@ -100,6 +101,11 @@ for i in db:
         hasbook.append(i[0])
 namelist.sort()
 
+#Load config
+config_file = open("config.json", "r")
+app_config = json.loads(config_file.read())
+config_file.close()
+
 #Code for the Combobox and the label
 label1 = ttk.Label(app, text = "Select Novel:")
 label1.grid(column = 0, row = 0, pady = 10, sticky = "W")
@@ -132,11 +138,12 @@ ending_chapter_chosen = ttk.Entry(app, width = 5, textvariable = ending_chapter)
 ending_chapter_chosen.grid(column = 1, row = 3, sticky = "W")
 
 #Code for delete chapters
-label5 = ttk.Label(app, text = "Cleanup when done: ")
+label5 = ttk.Label(app, text = "Delete temporary chapter files after download: ")
 label5.grid(column = 0, row = 4, pady = 10, sticky = "W")
 delete_chapters = tk.BooleanVar()
+delete_chapters.set(app_config["default_temporary_chapter_cleanup_behavior"])
 delete_chapters_chosen = ttk.Checkbutton(app, variable = delete_chapters, offvalue=False, onvalue=True)
-delete_chapters_chosen.grid(column = 1, row = 4, sticky = "W")
+delete_chapters_chosen.grid(column =1, row = 4, sticky = "W")
 
 #Code for "Generate" button
 generate_button = ttk.Button(app, text = "Generate", command = button_press)
