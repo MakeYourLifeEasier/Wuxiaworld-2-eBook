@@ -52,6 +52,9 @@ Novels that are not included and won't be included in the near future:
 - Terror Infinity
 - Unrivaled Tang Sect
 
+### For Mac Users
+
+You'll likely experience SSL Certificate problems. Please check Issue #35 for a way to resolve this bug.
 
 ### Planned feature's and updates
 
