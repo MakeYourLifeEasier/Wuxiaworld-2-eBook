@@ -71,6 +71,7 @@ def button_press():
             else:
                 try:
                     getify.download(bulk_list[x], str(s_chapter) + ".xhtml")
+                    file_list.append(_get_xhtml_path(raw_info, s_chapter))
                 except HTTPError as e:
                     # Return code error (e.g. 404, 501, ...)
                     print('URL: {}, HTTPError: {} - {}'.format(bulk_list[x], e.code, e.reason))
@@ -79,7 +80,6 @@ def button_press():
                     print('URL: {}, URLError: {}'.format(bulk_list[x], e.reason))
                 else:
                     getify.clean(str(s_chapter) + ".xhtml", _get_xhtml_path(raw_info, s_chapter), name)
-            file_list.append(_get_xhtml_path(raw_info, s_chapter))
             s_chapter = int(s_chapter) + 1
 
         getify.generate(file_list, raw_info[0], raw_info[3], raw_info[2], reset, str(e_chapter), cleanup=cleanup)
