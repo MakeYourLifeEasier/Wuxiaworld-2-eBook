@@ -6,7 +6,15 @@ from urllib.error import HTTPError, URLError
 import os
 import json
 from os import path
+import sys
 
+def path_to_temp(relative_path):
+    try:
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
+    
+    return os.path.join(base_path, relative_path)
 #Initializing Stuff
 
 main = tk.Tk()
@@ -15,7 +23,7 @@ main.geometry("535x190")
 main.resizable(True, True)
 app = tk.Frame(main)
 app.grid()
-conn = sql.connect("novels.db")
+conn = sql.connect(path_to_temp("novels.db"))
 c = conn.cursor()
 
 #Enables book number field only on novels that are using it
