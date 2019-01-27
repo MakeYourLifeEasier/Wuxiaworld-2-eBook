@@ -3,6 +3,8 @@
 # Wuxiaworld-2-eBook
 This Python script will download chapters from novels availaible on wuxiaworld.com and saves them into the .epub format.
 
+Visit [novel-ebook.com](https://novel-ebook.com) for a webapp with the same functionality. Beware this site is still under development.
+
 ## Getting Started
 
 To run this script you'll need to have Python 3.6.x installed which you can find [here](https://www.python.org/downloads/ "Python Download Link").
