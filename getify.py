@@ -9,6 +9,7 @@ from PIL import ImageFont
 from PIL import ImageDraw
 from bs4 import BeautifulSoup
 import uuid
+import ssl
 
 def find_between(file):
     f = open(file, "r", encoding = "utf8")
@@ -18,6 +19,7 @@ def find_between(file):
 
 """Downloads web page from Wuxiaworld and saves it into the folder where the programm is located"""
 def download(link, file_name):
+    context = ssl.SSLContext(ssl.CERT_NONE)
     url = urllib.request.Request(
         link,
         data=None,
@@ -26,7 +28,7 @@ def download(link, file_name):
           }
         )
 
-    with urllib.request.urlopen(url) as response, open(file_name, 'wb') as out_file:
+    with urllib.request.urlopen(url, context=context) as response, open(file_name, 'wb') as out_file:
          shutil.copyfileobj(response, out_file)
 
 
