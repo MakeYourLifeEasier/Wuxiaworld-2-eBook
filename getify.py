@@ -41,10 +41,13 @@ def clean(file_name_in, file_name_out, start):
     chapter_title = soup.find(class_="caption clearfix")
     content = chapter_title.find_next_sibling(class_="fr-view")
     chapter_title = chapter_title.find("h4")
-    if chapter_title.attrs["class"][0] == "text-spoiler":
-        has_spoiler = chapter_title.text
-        chapter_title = "Chapter name hidden due to potential spoilers"
-    else:
+    try:
+        if chapter_title.attrs["class"][0] == "text-spoiler":
+            has_spoiler = chapter_title.text
+            chapter_title = "Chapter name hidden due to potential spoilers"
+        else:
+            chapter_title = chapter_title.text
+    except IndexError:
         chapter_title = chapter_title.text
 
     for a in content.find_all("a"):
