@@ -3,7 +3,7 @@
 # Wuxiaworld-2-eBook
 This Python script will download chapters from novels availaible on wuxiaworld.com and saves them into the .epub format.
 
-Visit [novel-ebook.com](https://novel-ebook.com) for a webapp with the same functionality. Beware this site is still under development.
+Visit [novel-ebook.com](https://novel-ebook.com) for a webapp with the same functionality but with over 2000 supported novels! Beware this site is still in beta and you may experience problems.
 
 ## Getting Started
 
@@ -58,9 +58,17 @@ Novels that are not included and won't be included in the near future:
 
 You'll likely experience SSL Certificate problems. Please check Issue #35 for a way to resolve this bug.
 
-### Planned feature's and updates
+### Related Projects
 
-- Improved Cover Editing
+Here are some related projects you can check out if you experience problems or don't like this application:
+
+- [novel-ebook.com](https://novel-ebook.com) -  Spiritual successor of this script as a web application with more novels, better user experience, faster downloads, consistency between operating systems and Android/iOS support. All without downloading any software!
+
+- [EternalTrail's fork of this script](https://github.com/EternalTrail/Novel-2-EBook) - that is basically a rewrite. Clean code, easy install, lightweight, good looking UI and support for GravityTales (and more to come)!
+
+- [LordKBX's fork of this script](https://github.com/LordKBX/wuxiaworld_export_ebook)
+
+- [KietSam's fork of this script](https://github.com/KietSam/Wuxiaworld-2-eBook) - If you plan on uploading the generated .epub files to Google Books, try this fork.
 
 ## License
 
